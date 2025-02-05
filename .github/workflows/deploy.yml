@@ -4,24 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-      Drain:
-        runs-on: ubuntu-latest
-        environment: Development_1
-        steps:
-          - run: echo "🎉 Drain job was called"
-
       Deploy:
-        needs: Drain
         runs-on: ubuntu-latest
         environment: Development_2
         steps:
           - run: echo "🎉 Deploy job was called"
 
 
-      Restore:
-        needs: Deploy
-        runs-on: ubuntu-latest
-        environment: Development_2
-        steps:
-          - run: echo "🎉 Restore job was called"
+
 
