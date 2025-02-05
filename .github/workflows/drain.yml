@@ -5,7 +5,7 @@ on:
 jobs:
   Drain:
     runs-on: ubuntu-latest
-    environment: Development_1
+    environment: Development_2
     steps:
       - run: echo "🎉 Drain job was called"
 
