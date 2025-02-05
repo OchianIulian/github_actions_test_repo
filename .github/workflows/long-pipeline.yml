@@ -15,7 +15,11 @@ jobs:
       environment: Development_2
       steps:
         - run: echo "🎉 Deploy job was called"
+
+  Restore:
+      needs: Deploy
+      runs-on: ubuntu-latest
+      environment: Development_1
+      steps:
         - run: echo "🎉 Restore job was called"
-
-
 
