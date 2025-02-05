@@ -19,6 +19,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
   Development-2:
+      needs: Explore-GitHub-Actions
       runs-on: ubuntu-latest
       environment: Development_2
       steps:
@@ -33,4 +34,3 @@ jobs:
           run: |
             ls ${{ github.workspace }}
         - run: echo "🍏 This job's status is ${{ job.status }}."
-  
