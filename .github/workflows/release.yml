@@ -12,6 +12,10 @@ on:
           - prod
         required: true
         default: lab
+      application_version_tag:
+        type: string
+        description: "Override Artifactory Tag (lab/perf_test only, defaults to git tag)"
+        required: false
       region:
         type: choice
         description: "Region where the deploy happen first"
