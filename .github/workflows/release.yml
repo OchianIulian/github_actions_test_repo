@@ -1,9 +1,6 @@
 name: Release
-run-name: Release ${{ inputs.ring }}
+run-name: Release ${{ inputs.ring }}/${{ inputs.region}}
 on:
-  push:
-    branches:
-      - release
   workflow_dispatch:
     inputs:
       ring:
@@ -24,10 +21,15 @@ on:
           - east
           - west
         required: true
-      environment:
-        description: "Username/Environment Name (lab only, required for lab)"
+      flyway_migration:
+        type: boolean
+        description: "Flyway migration"
+      provision_ring:
+        type: boolean
+        description: "Provision Ring"
+      role:
+        description: "Role (only required if Provision Ring is true): customer-smpp, nats, kms, mm4-static-enis, chatbot, rcs-load-balancer, rcs-intern-load-balancer"
         type: string
-
 
 jobs:
   drain-restore:
@@ -35,4 +37,15 @@ jobs:
     environment: ${{ inputs.ring }}
     steps:
       - run: echo "Release started"
-      - run: echo "You are in release branch"
+      - name: Check if provisioning is enabled
+        if: ${{ inputs.provision_ring == 'true' && inputs.role != '' }}
+        run: echo "Provision roles are:"
+
+      - name: Convert roles into array
+        if: ${{ inputs.provision_ring == 'true' && inputs.role != '' }}
+        run: |
+          ROLES="${{ inputs.role }}"
+          IFS=',' read -r -a ROLE_ARRAY <<< "$ROLES"
+          for role in "${ROLE_ARRAY[@]}"; do
+            echo "Deploying role: $role"
+          done
