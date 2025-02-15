@@ -49,7 +49,7 @@ jobs:
         run: echo "Provision ring is set to true"
 
       - name: Convert roles into array
-        if: ${{ inputs.provision_ring && contains(inputs.role, '') == false }}
+#        if: ${{ inputs.provision_ring && contains(inputs.role, '') == false }}
         run: |
           ROLES="${{ inputs.role }}"
           for role in $(echo "$ROLES" | tr ',' '\n'); do
