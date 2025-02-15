@@ -40,11 +40,11 @@ jobs:
     steps:
       - run: echo "Release started"
       - name: Check if provisioning is enabled
-        if: ${{ inputs.provision_ring == 'true'}}
+        if: ${{ inputs.provision_ring}}
         run: echo "Provision ring is set to true"
 
       - name: Convert roles into array
-        if: ${{ inputs.provision_ring == 'true' && inputs.role != '' }}
+        if: ${{ inputs.provision_ring && contains(inputs.role, '') == false }}
         run: |
           ROLES="${{ inputs.role }}"
           IFS=',' read -r -a ROLE_ARRAY <<< "$ROLES"
