@@ -1,0 +1,37 @@
+name: Release
+run-name: Release ${{ inputs.ring }}
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+    inputs:
+      ring:
+        type: choice
+        description: "Ring"
+        options:
+          - lab
+          - uat
+          - prod
+        required: true
+        default: lab
+      region:
+        type: choice
+        description: "Region where the deploy happen first"
+        options:
+          - eu_central
+          - eu_west
+          - east
+          - west
+        required: true
+      environment:
+        description: "Username/Environment Name (lab only, required for lab)"
+        type: string
+
+
+jobs:
+  drain-restore:
+    runs-on: ${{ fromJSON(vars.SWI_GLORG_UBUNTU_2204) }}
+    environment: ${{ inputs.ring }}
+    steps:
+      - run: echo "Release started"
