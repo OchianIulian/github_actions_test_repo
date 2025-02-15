@@ -24,9 +24,11 @@ on:
       flyway_migration:
         type: boolean
         description: "Flyway migration"
+        default: false
       provision_ring:
         type: boolean
         description: "Provision Ring"
+        default: false
       role:
         description: "Role (only required if Provision Ring is true): customer-smpp, nats, kms, mm4-static-enis, chatbot, rcs-load-balancer, rcs-intern-load-balancer"
         type: string
