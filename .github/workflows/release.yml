@@ -35,3 +35,4 @@ jobs:
     environment: ${{ inputs.ring }}
     steps:
       - run: echo "Release started"
+      - run: echo "You are in release branch"
