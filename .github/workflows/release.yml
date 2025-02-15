@@ -40,8 +40,8 @@ jobs:
     steps:
       - run: echo "Release started"
       - name: Check if provisioning is enabled
-        if: ${{ inputs.provision_ring == 'true' && inputs.role != '' }}
-        run: echo "Provision roles are:"
+        if: ${{ inputs.provision_ring == 'true'}}
+        run: echo "Provision ring is set to true"
 
       - name: Convert roles into array
         if: ${{ inputs.provision_ring == 'true' && inputs.role != '' }}
