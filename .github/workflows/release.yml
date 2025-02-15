@@ -1,9 +1,6 @@
 name: Release
-run-name: Release ${{ inputs.ring }}
+run-name: Release ${{ inputs.ring }}/${{ inputs.region}}
 on:
-  push:
-    branches:
-      - release
   workflow_dispatch:
     inputs:
       ring:
@@ -15,6 +12,13 @@ on:
           - prod
         required: true
         default: lab
+      environment:
+        description: "Username/Environment Name (lab only, required for lab)"
+        type: string
+      application_version_tag:
+        type: string
+        description: "Override Artifactory Tag (lab/perf_test only, defaults to git tag)"
+        required: false
       region:
         type: choice
         description: "Region where the deploy happen first"
@@ -24,10 +28,17 @@ on:
           - east
           - west
         required: true
-      environment:
-        description: "Username/Environment Name (lab only, required for lab)"
+      flyway_migration:
+        type: boolean
+        description: "Flyway migration"
+        default: false
+      provision_ring:
+        type: boolean
+        description: "Provision Ring"
+        default: false
+      role:
+        description: "Role (only required if Provision Ring is true): customer-smpp, nats, kms, mm4-static-enis, chatbot, rcs-load-balancer, rcs-intern-load-balancer"
         type: string
-
 
 jobs:
   drain-restore:
@@ -35,4 +46,19 @@ jobs:
     environment: ${{ inputs.ring }}
     steps:
       - run: echo "Release started"
-      - run: echo "You are in release branch"
+
+      - name: Check if flyway migration is enabled
+        if: inputs.flyway_migration
+        run: echo "Flyway migration is set to true"
+
+      - name: Check if provisioning is enabled
+        if: inputs.provision_ring
+        run: echo "Provision ring is set to true"
+
+      - name: Convert roles into array
+#        if: ${{ inputs.provision_ring && contains(inputs.role, '') == false }}
+        run: |
+          ROLES="${{ inputs.role }}"
+          for role in $(echo "$ROLES" | tr ',' '\n'); do
+            echo "Deploying role: $role"
+          done
