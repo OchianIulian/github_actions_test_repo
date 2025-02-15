@@ -12,6 +12,9 @@ on:
           - prod
         required: true
         default: lab
+      environment:
+        description: "Username/Environment Name (lab only, required for lab)"
+        type: string
       application_version_tag:
         type: string
         description: "Override Artifactory Tag (lab/perf_test only, defaults to git tag)"
