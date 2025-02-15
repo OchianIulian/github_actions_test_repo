@@ -39,18 +39,19 @@ jobs:
     environment: ${{ inputs.ring }}
     steps:
       - run: echo "Release started"
+
       - name: Check if flyway migration is enabled
         if: inputs.flyway_migration
         run: echo "Flyway migration is set to true"
+
       - name: Check if provisioning is enabled
-        if: ${{ inputs.provision_ring}}
+        if: inputs.provision_ring
         run: echo "Provision ring is set to true"
 
       - name: Convert roles into array
         if: ${{ inputs.provision_ring && contains(inputs.role, '') == false }}
         run: |
           ROLES="${{ inputs.role }}"
-          IFS=',' read -r -a ROLE_ARRAY <<< "$ROLES"
-          for role in "${ROLE_ARRAY[@]}"; do
+          for role in $(echo "$ROLES" | tr ',' '\n'); do
             echo "Deploying role: $role"
           done
