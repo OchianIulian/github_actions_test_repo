@@ -1,0 +1,31 @@
+# .github/workflows/caller-workflow.yml
+name: Caller Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      param1:
+        description: "Primul parametru"
+        required: true
+        type: string
+      param2:
+        description: "Al doilea parametru"
+        required: true
+        type: string
+      param3:
+        description: "Al treilea parametru"
+        required: false
+        type: boolean
+      param4:
+        description: "Al patrulea parametru"
+        required: false
+        type: number
+
+jobs:
+  call-reusable-workflow:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      param1: ${{ inputs.param1 }}
+      param2: ${{ inputs.param2 }}
+      param3: ${{ inputs.param3 }}
+      param4: ${{ inputs.param4 }}
