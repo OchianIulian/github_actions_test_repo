@@ -19,7 +19,7 @@ on:
       param4:
         description: "Al patrulea parametru"
         required: false
-        type: number
+        type: string
 
 jobs:
   process:
