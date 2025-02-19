@@ -42,7 +42,7 @@ on:
 jobs:
   process:
     environment:
-      name: ${{ github.event_name == 'workflow_call' && 'Development_1' || 'Development_2' }}
+      name: ${{ github.workflow_ref == 'workflow_call' && 'Development_1' || 'Development_2' }}
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
@@ -52,6 +52,8 @@ jobs:
           echo "Param3: ${{ inputs.param3 }}"
           echo "Param4: ${{ inputs.param4 }}"
           echo ${{ github.event_name }}
+          echo "Workflow Ref: ${{ github.workflow_ref }}"
+
   process2:
     runs-on: ubuntu-latest
     steps:
