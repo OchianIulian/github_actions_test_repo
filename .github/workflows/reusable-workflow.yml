@@ -41,7 +41,7 @@ on:
 
 jobs:
   process:
-    environment: ${{ github.event_name == 'workflow_call' && 'Development_1' || github.event_name == 'workflow_dispatch' && 'Development_2' || '' }}
+    environment: ${{ contains('workflow_call', github.event_name) && 'Development_1' || contains('workflow_dispatch', github.event_name) && 'Development_2' || '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
