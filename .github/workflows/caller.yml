@@ -25,7 +25,6 @@ jobs:
   call-reusable-workflow:
     uses: ./.github/workflows/reusable-workflow.yml
     with:
-      environment: Development_1
       param1: ${{ inputs.param1 }}
       param2: ${{ inputs.param2 }}
       param3: ${{ inputs.param3 }}
