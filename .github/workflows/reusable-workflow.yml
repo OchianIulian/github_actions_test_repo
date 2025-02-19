@@ -41,7 +41,7 @@ on:
 
 jobs:
   process:
-    environment: ${{ contains('workflow_call', github.event_name) && 'Development_1' || contains('workflow_dispatch', github.event_name) && 'Development_2' || '' }}
+    environment: Development_1
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
