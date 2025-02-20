@@ -49,7 +49,7 @@ jobs:
       name: ${{ github.workflow == 'Reusable Workflow' && 'Development_2' || '' }}
     runs-on: ubuntu-latest
     env:
-      FIXED_VALUE: ${{ inputs.passwd_variable}}
+      FIXED_VALUE: ${{ inputs.passwd_variable || 'var'}}
     steps:
       - name: Afișează inputurile primite
         run: |
