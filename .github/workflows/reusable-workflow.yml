@@ -41,13 +41,10 @@ on:
       passwd_variable:
         required: false
         type: string
-        default: 'Development_1'
 
 jobs:
   process:
     runs-on: ubuntu-latest
-    env:
-      FIXED_VALUE: ${{ inputs.passwd_variable || 'Development_1'}}
     environment:
       name: ${{ inputs.passwd_variable == 'Development_2' && 'Development_2' || 'Development_1'}}
     steps:
