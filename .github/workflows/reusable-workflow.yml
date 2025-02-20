@@ -42,7 +42,7 @@ on:
 jobs:
   process:
     environment:
-      name: ${{ github.workflow == 'Reusable Workflow' && 'Development_1' || '' }}
+      name: ${{ github.workflow == 'Reusable Workflow' && 'Development_2' || '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
