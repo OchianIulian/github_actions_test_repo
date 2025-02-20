@@ -52,7 +52,7 @@ jobs:
           echo "Param3: ${{ inputs.param3 }}"
           echo "Param4: ${{ inputs.param4 }}"
           echo ${{ github.event_name }}
-          echo "Workflow Ref: ${{ github.workflow_ref }}"
+          echo "Workflow Ref: ${{ github.event_path }}"
 
   process2:
     runs-on: ubuntu-latest
