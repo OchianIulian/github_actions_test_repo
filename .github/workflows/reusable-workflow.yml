@@ -55,8 +55,7 @@ jobs:
           echo "Workflow Ref: ${{ github.event_path }}"
       - name: Get Workflow Filename
         run: |
-          FILE_NAME=$(basename $(find .github/workflows -type f -exec grep -l "${{ github.workflow }}" {} +))
-          echo "Workflow filename is: $FILE_NAME"
+          echo "Workflow filename is: ${{ github.workflow }}"
 
   process2:
     runs-on: ubuntu-latest
