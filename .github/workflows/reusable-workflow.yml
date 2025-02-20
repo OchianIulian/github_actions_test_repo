@@ -42,7 +42,7 @@ on:
 jobs:
   process:
     environment:
-      name: ${{ github.workflow_ref == 'OchianIulian/github_actions_test_repo/.github/workflows/reusable-workflow.yml@refs/heads/main' && 'Development_2' || '' }}
+      name: ${{ github.workflow_ref == 'OchianIulian/github_actions_test_repo/.github/workflows/reusable-workflow.yml@refs/heads/main' && 'Development_1' || '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
@@ -53,6 +53,10 @@ jobs:
           echo "Param4: ${{ inputs.param4 }}"
           echo ${{ github.event_name }}
           echo "Workflow Ref: ${{ github.event_path }}"
+      - name: Get Workflow Filename
+        run: |
+          FILE_NAME=$(basename $(find .github/workflows -type f -exec grep -l "${{ github.workflow }}" {} +))
+          echo "Workflow filename is: $FILE_NAME"
 
   process2:
     runs-on: ubuntu-latest
