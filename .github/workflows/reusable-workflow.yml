@@ -42,7 +42,7 @@ on:
 jobs:
   process:
     environment:
-      name: ${{ github.workflow_ref == 'OchianIulian/github_actions_test_repo/.github/workflows/reusable-workflow.yml@refs/heads/main' && 'Development_1' || 'Development_2' }}
+      name: ${{ github.workflow_ref == 'OchianIulian/github_actions_test_repo/.github/workflows/reusable-workflow.yml@refs/heads/main' && 'Development_1' || '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Afișează inputurile primite
