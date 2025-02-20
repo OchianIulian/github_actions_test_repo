@@ -49,7 +49,7 @@ jobs:
     env:
       FIXED_VALUE: ${{ inputs.passwd_variable || 'Development_1'}}
     environment:
-      name: ${{ env.FIXED_VALUE }}
+      name: ${{ inputs.passwd_variable == 'Development_2' && 'Development_2' || 'Development_1'}}
     steps:
       - name: Afișează inputurile primite
         run: |
