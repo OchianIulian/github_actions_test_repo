@@ -46,7 +46,7 @@ on:
 jobs:
   process:
     environment:
-      name: ${{ FIXED_VALUE == 'var' && 'Development_2' || '' }}
+      name: ${{ env.FIXED_VALUE == 'var' && 'Development_2' || '' }}
     runs-on: ubuntu-latest
     env:
       FIXED_VALUE: ${{ inputs.passwd_variable || 'var'}}
