@@ -41,15 +41,15 @@ on:
       passwd_variable:
         required: false
         type: string
-        default: 'var'
+        default: 'Development_1'
 
 jobs:
   process:
-    environment:
-      name: ${{ env.FIXED_VALUE == 'var' && 'Development_2' || '' }}
     runs-on: ubuntu-latest
     env:
-      FIXED_VALUE: ${{ inputs.passwd_variable || 'var'}}
+      FIXED_VALUE: ${{ inputs.passwd_variable || 'Development_1'}}
+    environment:
+      name: ${{ env.FIXED_VALUE }}
     steps:
       - name: Afișează inputurile primite
         run: |
