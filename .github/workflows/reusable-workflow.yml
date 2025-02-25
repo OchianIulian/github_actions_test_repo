@@ -46,7 +46,7 @@ jobs:
   process:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ inputs.passwd_variable == 'true' && '' || 'Development_2'}}
+      name: ${{ inputs.passwd_variable && '' || 'Development_2'}}
     steps:
       - name: Afișează inputurile primite
         run: |
