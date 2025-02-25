@@ -54,7 +54,7 @@ jobs:
           echo "Param2: ${{ inputs.param2 }}"
           echo "Param3: ${{ inputs.param3 }}"
           echo "Param4: ${{ inputs.param4 }}"
-          echo $FIXED_VALUE
+          echo "${{ inputs.passwd_variable }}"
       - name: Get Workflow Filename
         run: |
           echo "Workflow filename is: ${{ github.workflow }}"
