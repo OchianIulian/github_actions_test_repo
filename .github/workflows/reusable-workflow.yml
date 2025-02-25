@@ -40,13 +40,13 @@ on:
         type: string
       passwd_variable:
         required: false
-        type: string
+        type: boolean
 
 jobs:
   process:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ inputs.passwd_variable == 'Development_1' && 'Development_1' || 'Development_2'}}
+      name: ${{ inputs.passwd_variable == 'true' && '' || 'Development_2'}}
     steps:
       - name: Afișează inputurile primite
         run: |
