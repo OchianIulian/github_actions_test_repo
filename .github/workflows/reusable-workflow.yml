@@ -46,7 +46,7 @@ on:
 jobs:
   process:
     runs-on: ubuntu-latest
-    environment: ${{ !inputs.passwd_variable && inputs.ring || '' }}
+    environment: ${{ !inputs.passwd_variable && 'Development_2' || '' }}
     steps:
       - name: Afișează inputurile primite
         run: |
