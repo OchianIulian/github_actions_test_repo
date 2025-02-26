@@ -41,12 +41,13 @@ on:
       passwd_variable:
         required: false
         type: boolean
+        default: false
 
 jobs:
   process:
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.passwd_variable && 'Default' || 'Development_2'}}
+    if: inputs.passwd_variable
+    environment: ${{ inputs.ring}}
     steps:
       - name: Afișează inputurile primite
         run: |
